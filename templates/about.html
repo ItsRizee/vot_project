@@ -130,10 +130,10 @@
         if (prevScrollpos > currentScrollPos) {
         nav.classList.remove("nav-fixed");
         setTimeout(function() {
-            nav.classList.add("nav-show");
+            nav.classList.add("nav");
         }, 10);
         } else {
-            nav.classList.remove("nav-show");
+            nav.classList.remove("nav");
             setTimeout(function() {
                 nav.classList.add("nav-fixed");
             }, 10);
@@ -148,7 +148,7 @@
         <a href="/">Home</a>
         <a href="#">New Journey</a>
         <a href="/about">About</a>
-        <a href="#">Contact</a>
+        <a href="/contact">Contact</a>
         <div class="animation start-about"></div>
     </nav>
 
