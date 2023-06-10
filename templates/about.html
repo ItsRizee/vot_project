@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f1f1;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 80px auto 0; /* Updated margin */
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px; /* Added border-radius */
+    }
+
+    h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 50px;
+        font-family: 'Pacifico', cursive; /* Added font-family */
+    }
+
+    p {
+        color: #555;
+        line-height: 1.6;
+        text-align: justify;
+    }
+
+    nav {
+        margin: 0 auto;
+        position: fixed;
+        top: 2%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: fit-content;
+        height: 50px;
+        background-color: #34495e;
+        border-radius: 8px;
+        font-size: 0;
+        transition: top 0.3s;
+    }
+
+    nav a {
+        line-height: 50px;
+        height: 100%;
+        font-size: 15px;
+        display: inline-block;
+        position: relative;
+        z-index: 1;
+        text-decoration: none;
+        text-transform: uppercase;
+        text-align: center;
+        color: white;
+        cursor: pointer;
+    }
+
+    nav .animation {
+        position: absolute;
+        height: 100%;
+        top: 0;
+        z-index: 0;
+        transition: all .5s ease 0s;
+        border-radius: 8px;
+    }
+
+    a:nth-child(1) {
+        width: 100px;
+    }
+
+    a:nth-child(2) {
+        width: 200px;
+    }
+
+    a:nth-child(3) {
+        width: 100px;
+    }
+
+    a:nth-child(4) {
+        width: 160px;
+    }
+
+    nav .start-home,
+    a:nth-child(1):hover~.animation {
+        width: 100px;
+        left: 0;
+        background-color: #1abc9c;
+    }
+
+    nav .start-new-journey,
+    a:nth-child(2):hover~.animation {
+        width: 200px;
+        left: 100px;
+        background-color: #e74c3c;
+    }
+
+    nav .start-about,
+    a:nth-child(3):hover~.animation {
+        width: 100px;
+        left: 300px;
+        background-color: #3498db;
+    }
+
+    nav .start-contact,
+    a:nth-child(4):hover~.animation {
+        width: 160px;
+        left: 400px;
+        background-color: #e67e22;
+    }
+    .nav-fixed {
+        position: fixed;
+        top: -50px;
+        transition: top 0.3s;
+    }
+
+    </style>
+    <script>
+        var prevScrollpos = window.pageYOffset;
+
+        window.addEventListener("scroll", function() {
+        var currentScrollPos = window.pageYOffset;
+        var nav = document.querySelector("nav");
+
+        if (prevScrollpos > currentScrollPos) {
+        nav.classList.remove("nav-fixed");
+        setTimeout(function() {
+            nav.classList.add("nav-show");
+        }, 10);
+        } else {
+            nav.classList.remove("nav-show");
+            setTimeout(function() {
+                nav.classList.add("nav-fixed");
+            }, 10);
+        }
+
+        prevScrollpos = currentScrollPos;
+        });
+    </script>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="#">New Journey</a>
+        <a href="/about">About</a>
+        <a href="#">Contact</a>
+        <div class="animation start-about"></div>
+    </nav>
+
+    <div class="container">
+        <h1>About Me</h1>
+        <p>
+            Hello, I'm Nikola Petrov from Sofia, Bulgaria. I am currently studying at TUES (Technology School Electronic Systems), which is associated with the Technical University of Sofia.
+            This website is part of my school project for the subject of virtualization and cloud technologies. It serves as a travel blog where I can share my experiences with the world.
+        </p>
+        <p>
+            Traveling has always been a passion of mine, and I believe that exploring new places and immersing ourselves in different cultures can be a life-changing experience.
+            Through this blog, I aim to inspire others to embark on their own journeys and discover the beauty and diversity our world has to offer.
+        </p>
+        <p>
+            I have traveled extensively in Bulgaria and Greece, two countries that hold a special place in my heart. In Bulgaria, I have explored the picturesque landscapes of the Rila Mountains, the historic sites of Veliko Tarnovo, and the vibrant city of Plovdiv. Greece has captivated me with its ancient ruins in Athens, the stunning beaches of the Greek Islands, and the warm hospitality of its people.
+        </p>
+        <p>
+            I believe that travel is not just about ticking off destinations from a bucket list, but also about personal growth and broadening our perspectives. By stepping out of our comfort zones and embracing new experiences, we can gain a deeper understanding of ourselves and the world around us.
+        </p>
+        <p>
+            Join me as I share stories and breathtaking photos from my adventures. Together, let's create a community of passionate travelers who are eager to explore, learn, and connect with people from all walks of life.
+        </p>
+        <p>
+            Thank you for visiting my travel blog. I hope you find inspiration and useful information here. Feel free to reach out to me if you have any questions or if you'd like to share your own travel stories. Let's embark on this journey together!
+        </p>
+    </div>
+</body>
+</html>
