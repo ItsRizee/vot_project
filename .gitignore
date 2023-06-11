@@ -1,0 +1,3 @@
+# Ignore key.json and storage_key.json
+api/key.json
+api/storage_key.json
