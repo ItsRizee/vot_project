@@ -44,6 +44,22 @@ def home():
     return render_template('home.html', journeys=journeys)
 
 
+@app.route('/journey/<journey_id>')
+def journey_details(journey_id):
+    # Retrieve journey details from Firestore
+    journey_ref = db.collection('journeys').document(journey_id)
+    journey_data = journey_ref.get().to_dict()
+
+    # Fetch images from Cloud Storage
+    bucket = storage_client.bucket(journey_id.lower())
+    blobs = list(bucket.list_blobs())
+    images = []
+    if blobs:
+        for blob in blobs:
+            image_base64 = base64.b64encode(blob.download_as_bytes()).decode('utf-8')
+            images.append(image_base64)
+
+    return render_template('more_info.html', journey=journey_data, images=images)
 
 
 @app.route('/new_journey', methods=['POST', 'GET'])

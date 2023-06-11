@@ -1,10 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>More Info</title>
+    <link rel="icon" href="../static/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 75%;
+            margin: 80px auto 0; /* Updated margin */
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px; /* Added border-radius */
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .back-arrow {
+            color: #3498db;
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+         div.scroll-container {
+          overflow: auto;
+          white-space: nowrap;
+          padding: 10px;
+        }
+
+        div.scroll-container img {
+            padding: 10px;
+            max-width: 400px;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 0 10px;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .image-container img {
+            max-width: 400px;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 0 10px;
+        }
+        p {
+            text-align: justify;
+            line-height: 1.5;
+        }
+    </style>
 </head>
 <body>
-
+    <div class="container">
+        <div class="header">
+            <div>
+                <a href="javascript:history.back()" class="back-arrow"><i class="fas fa-arrow-left"></i></a>
+            </div>
+            <h1>{{ journey.title }} - {{ journey.country }}</h1>
+            <div></div>
+        </div>
+        <div class="scroll-container">
+            {% for image in images %}
+            <img src="data:image/png;base64,{{ image }}">
+            {% endfor %}
+        </div>
+        <p><strong>Description:</strong> {{ journey.description }}</p>
+    </div>
 </body>
 </html>

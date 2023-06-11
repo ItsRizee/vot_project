@@ -100,7 +100,14 @@
         bottom: -50px;
         opacity: 0;
         transition: 0.3s ease-out;
-        transform: translate(-50%, 0);
+        transform: translateX(-50%);
+        text-decoration: none;
+        display: flex; /* Add flex display */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+    }
+    .card-button:hover {
+        background-color: #2980b9;
     }
     .card:hover {
         border-color: #3498db;
@@ -224,7 +231,7 @@
             <div class="card-details">
                 <h2>{{ journey.country }}</h2>
             </div>
-            <button class="card-button">More info</button>
+            <a href="/journey/{{ journey.id }}" class="card-button">More info</a>
         </div>
         {% endfor %}
     </div>
