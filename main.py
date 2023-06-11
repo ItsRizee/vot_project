@@ -1,6 +1,15 @@
 from flask import Flask, render_template, request
+from firebase_admin import credentials, initialize_app, firestore
 
+
+cred = credentials.Certificate("api/key.json")
+default_app = initialize_app(cred)
+
+# Initialize Flask app
 app = Flask(__name__)
+
+# Initialize Firestore DB
+db = firestore.client()
 
 @app.route('/')
 def home():
@@ -15,6 +24,13 @@ def new_journey():
         description = request.form['description']
         images = request.files.getlist('image')
 
+        # Add contact data to database
+        contact_reference = db.collection('journeys').document()
+        contact_reference.set({
+            'title': title,
+            'country': country,
+            'description': description
+        })
 
     return render_template('new_journey.html')
 
@@ -26,6 +42,13 @@ def contact():
         email = request.form['email']
         message = request.form['message']
 
+        # Add contact data to database
+        contact_reference = db.collection('contacts').document()
+        contact_reference.set({
+            'name': name,
+            'email': email,
+            'message': message
+        })
 
     return render_template('contact.html')
 
