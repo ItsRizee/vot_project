@@ -14,37 +14,56 @@
         align-items: center;
         justify-content: center;
         min-height: 100vh;
+        overflow: hidden;
     }
     .center-heading {
         font-family: 'Pacifico', cursive;
         font-size: 60px;
         margin-bottom: 20px;
         position: fixed;
-        top: 10%;
+        top: 11%;
         left: 50%;
         transform: translateX(-50%);
         z-index: 1;
         background-color: white;
         padding: 10px;
     }
-    .card-container {
+    .scrollmenu {
+        width: 100%;
+        margin-top: 25%;
+        height: fit-content;
+        /**used to scroll text*/
+        white-space: nowrap;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 20px;
-        margin-top: 260px;
-        margin-left: 42%;
-        padding-right: 20px;
+        overflow-x: scroll;
+        overflow-y: hidden;    /**keep scrolling when
+        *finger or cursor scrolling*/
+        -webkit-overflow-scrolling: touch;
+        padding: 0 20px;
     }
     .card {
         width: 190px;
+        flex-shrink: 0;
         height: 320px;
         border-radius: 20px;
         background: #f5f5f5;
         position: relative;
+        float: none;
+        display: inline-block;
         border: 2px solid #c3c6ce;
         transition: 0.5s ease-out;
         overflow: hidden;
     }
+    .card:first-child {
+        margin-left: 20px;
+    }
+
+    .card:last-child {
+        margin-right: 20px;
+    }
+
     .card img {
         width: 100%;
         height: 100%;
@@ -144,21 +163,6 @@
         left: 0;
         background-color: #3498db;
     }
-    nav .start-new-journey, a:nth-child(2):hover~.animation {
-        width: 200px;
-        left: 100px;
-        background-color: #e74c3c;
-    }
-    nav .start-about, a:nth-child(3):hover~.animation {
-        width: 100px;
-        left: 300px;
-        background-color: #1abc9c;
-    }
-    nav .start-contact, a:nth-child(4):hover~.animation {
-        width: 160px;
-        left: 400px;
-        background-color: #e67e22;
-    }
 
     p {
         position: absolute;
@@ -186,7 +190,7 @@
 
     <img src="../static/logo.png" alt="Travel Blog" class="center-heading" style="height: 30%">
 
-    <div class="card-container">
+    <div class="scrollmenu">
         {% for journey in journeys %}
         <div class="card">
             {% if journey.image_base64 %}
