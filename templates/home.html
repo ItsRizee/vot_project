@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Travel Blog</title>
-    <link rel="icon" href="/icons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../static/favicon.ico" type="image/x-icon">
     <style>
     body {
         font-family: Arial, sans-serif;
@@ -184,74 +184,23 @@
         <div class="animation start-home"></div>
     </nav>
 
-{#    <h1 class="center-heading">Travel Blog</h1>#}
     <img src="../static/logo.png" alt="Travel Blog" class="center-heading" style="height: 30%">
 
     <div class="card-container">
+        {% for journey in journeys %}
         <div class="card">
-            <img src="{{ url_for('static', filename='image1.jpg') }}">
+            {% if journey.image_base64 %}
+            <img src="data:image/png;base64,{{ journey.image_base64 }}">
+            {% else %}
+            <img src="../static/logo.png">
+            {% endif %}
             <div class="card-details">
-                <h2>Maldives</h2>
+                <h2>{{ journey.country }}</h2>
             </div>
             <button class="card-button">More info</button>
         </div>
-
-        <div class="card">
-            <img src="{{ url_for('static', filename='image2.jpg') }}">
-            <div class="card-details">
-                <h2>Hawaii</h2>
-            </div>
-            <button class="card-button">More info</button>
-        </div>
-
-        <div class="card">
-            <img src="{{ url_for('static', filename='image3.jpg') }}">
-            <div class="card-details">
-                <h2>Dubai</h2>
-            </div>
-            <button class="card-button">More info</button>
-        </div>
-
-        <div class="card">
-            <img src="{{ url_for('static', filename='image4.jpg') }}">
-            <div class="card-details">
-                <h2>Qatar</h2>
-            </div>
-            <button class="card-button">More info</button>
-        </div>
-
-        <div class="card">
-            <img src="{{ url_for('static', filename='image5.jpg') }}">
-            <div class="card-details">
-                <h2>China</h2>
-            </div>
-            <button class="card-button">More info</button>
-        </div>
-
-        <div class="card">
-            <img src="{{ url_for('static', filename='image6.jpg') }}">
-            <div class="card-details">
-                 <h2>Washington DC</h2>
-            </div>
-            <button class="card-button">More info</button>
-        </div>
-
-        <div class="card">
-            <img src="{{ url_for('static', filename='image7.jpg') }}">
-            <div class="card-details">
-                <h2>Canada</h2>
-            </div>
-            <button class="card-button">More info</button>
-        </div>
-
-        <div class="card">
-            <img src="{{ url_for('static', filename='image8.jpg') }}">
-            <div class="card-details">
-                 <h2>Bulgaria</h2>
-            </div>
-            <button class="card-button">More info</button>
-        </div>
-        <!-- Add more cards here -->
+        {% endfor %}
     </div>
+
 </body>
 </html>

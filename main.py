@@ -1,4 +1,5 @@
 import os
+import base64
 from flask import Flask, render_template, request
 from firebase_admin import credentials, initialize_app, firestore
 from google.cloud import storage
@@ -19,7 +20,30 @@ storage_client = storage.Client()
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    # Fetch all journeys from Firestore
+    journeys = []
+    collection_ref = db.collection('journeys')
+    docs = collection_ref.stream()
+    for doc in docs:
+        journey_data = doc.to_dict()
+        journey_data['id'] = doc.id
+
+        # Fetch images from Cloud Storage
+        bucket = storage_client.bucket(doc.id.lower())
+        blobs = list(bucket.list_blobs())
+        if blobs:
+            image_blob = blobs[0]
+            image_content = image_blob.download_as_bytes()
+            image_base64 = base64.b64encode(image_content).decode('utf-8')
+            journey_data['image_base64'] = image_base64
+        else:
+            journey_data['image_base64'] = None
+
+        journeys.append(journey_data)
+
+    return render_template('home.html', journeys=journeys)
+
+
 
 
 @app.route('/new_journey', methods=['POST', 'GET'])
