@@ -10,16 +10,16 @@
       padding: 0;
     }
 
-     /* Style inputs with type="text", select elements and textareas */
+    /* Style inputs with type="text", select elements and textareas */
     input[type=text], select, textarea {
-      width: 100%; /* Full width */
-      padding: 12px; /* Some padding */
-      border: 1px solid #ccc; /* Gray border */
-      border-radius: 4px; /* Rounded borders */
-      box-sizing: border-box; /* Make sure that padding and width stays in place */
-      margin-top: 6px; /* Add a top margin */
-      margin-bottom: 16px; /* Bottom margin */
-      resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      resize: none;
     }
 
     /* Style the submit button with a specific background color etc */
@@ -111,7 +111,7 @@
     a:nth-child(1):hover~.animation {
       width: 100px;
       left: 0;
-      background-color: #1abc9c;
+      background-color: #3498db;
     }
 
     nav .start-new-journey,
@@ -125,7 +125,7 @@
     a:nth-child(3):hover~.animation {
       width: 100px;
       left: 300px;
-      background-color: #3498db;
+      background-color: #1abc9c;
     }
 
     nav .start-contact,
@@ -139,23 +139,23 @@
 <body>
     <nav>
         <a href="/">Home</a>
-        <a href="#">New Journey</a>
+        <a href="/new_journey">New Journey</a>
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
         <div class="animation start-contact"></div>
     </nav>
 
     <div class="container">
-        <form action="action_page.php">
+        <form action="./contact">
 
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your name...">
+            <input type="text" id="name" name="name" placeholder="Your name">
 
             <label for="email">Email</label>
-            <input type="text" id="email" name="email" placeholder="Your email...">
+            <input type="text" id="email" name="email" placeholder="Your email">
 
             <label for="subject">Subject</label>
-            <textarea id="subject" name="subject" placeholder="Write something..." style="height:200px"></textarea>
+            <textarea id="subject" name="subject" placeholder="Write something" style="height:200px"></textarea>
 
             <input type="submit" value="Submit">
 

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nex Journey</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      margin: 0;
+      padding: 0;
+    }
+
+     /* Style inputs with type="text", select elements and textareas */
+    input[type=text], select, textarea {
+      width: 100%; /* Full width */
+      padding: 12px; /* Some padding */
+      border: 1px solid #ccc; /* Gray border */
+      border-radius: 4px; /* Rounded borders */
+      box-sizing: border-box; /* Make sure that padding and width stays in place */
+      margin-top: 6px; /* Add a top margin */
+      margin-bottom: 16px; /* Bottom margin */
+      resize: none /* Allow the user to vertically resize the textarea (not horizontally) */
+    }
+
+    /* Style the submit button with a specific background color etc */
+    input[type=submit] {
+      background-color: #e74c3c;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* When moving the mouse over the submit button, add a darker green color */
+    input[type=submit]:hover {
+      background-color: #c0392b;
+    }
+
+    /* Add a background color and some padding around the form */
+    .container {
+        max-width: 800px;
+        margin: 80px auto 0; /* Updated margin */
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px; /* Added border-radius */
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 50px;
+      font-family: 'Pacifico', cursive;
+    }
+
+    nav {
+      margin: 0 auto;
+      position: fixed;
+      top: 2%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: fit-content;
+      height: 50px;
+      background-color: #34495e;
+      border-radius: 8px;
+      font-size: 0;
+    }
+
+    nav a {
+      line-height: 50px;
+      height: 100%;
+      font-size: 15px;
+      display: inline-block;
+      position: relative;
+      z-index: 1;
+      text-decoration: none;
+      text-transform: uppercase;
+      text-align: center;
+      color: white;
+      cursor: pointer;
+    }
+
+    nav .animation {
+      position: absolute;
+      height: 100%;
+      top: 0;
+      z-index: 0;
+      transition: all .5s ease 0s;
+      border-radius: 8px;
+    }
+
+    a:nth-child(1) {
+      width: 100px;
+    }
+
+    a:nth-child(2) {
+      width: 200px;
+    }
+
+    a:nth-child(3) {
+      width: 100px;
+    }
+
+    a:nth-child(4) {
+      width: 160px;
+    }
+
+    nav .start-home,
+    a:nth-child(1):hover~.animation {
+      width: 100px;
+      left: 0;
+      background-color: #3498db;
+    }
+
+    nav .start-new-journey,
+    a:nth-child(2):hover~.animation {
+      width: 200px;
+      left: 100px;
+      background-color: #e74c3c;
+    }
+
+    nav .start-about,
+    a:nth-child(3):hover~.animation {
+      width: 100px;
+      left: 300px;
+      background-color: #1abc9c;
+    }
+
+    nav .start-contact,
+    a:nth-child(4):hover~.animation {
+      width: 160px;
+      left: 400px;
+      background-color: #e67e22;
+    }
+  </style>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/new_journey">New Journey</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <div class="animation start-new-journey"></div>
+    </nav>
+
+    <div class="container">
+        <form id="journey-form" action="./new_journey" method="POST">
+
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" placeholder="Write the name of the place you visited">
+
+            <label for="country">Country</label>
+            <select id="country" name="country">
+                <option value="afghanistan">Afghanistan</option>
+                <option value="albania">Albania</option>
+                <option value="algeria">Algeria</option>
+                <option value="andorra">Andorra</option>
+                <option value="angola">Angola</option>
+                <option value="argentina">Argentina</option>
+                <option value="armenia">Armenia</option>
+                <option value="australia">Australia</option>
+                <option value="austria">Austria</option>
+                <option value="azerbaijan">Azerbaijan</option>
+                <option value="bangladesh">Bangladesh</option>
+                <option value="belarus">Belarus</option>
+                <option value="belgium">Belgium</option>
+                <option value="bolivia">Bolivia</option>
+                <option value="bosnia-and-herzegovina">Bosnia and Herzegovina</option>
+                <option value="brazil">Brazil</option>
+                <option value="bulgaria">Bulgaria</option>
+                <option value="canada">Canada</option>
+                <option value="chile">Chile</option>
+                <option value="china">China</option>
+                <option value="colombia">Colombia</option>
+                <option value="costa-rica">Costa Rica</option>
+                <option value="croatia">Croatia</option>
+                <option value="cuba">Cuba</option>
+                <option value="cyprus">Cyprus</option>
+                <option value="czech-republic">Czech Republic</option>
+                <option value="denmark">Denmark</option>
+                <option value="dominican-republic">Dominican Republic</option>
+                <option value="ecuador">Ecuador</option>
+                <option value="egypt">Egypt</option>
+                <option value="estonia">Estonia</option>
+                <option value="finland">Finland</option>
+                <option value="france">France</option>
+                <option value="georgia">Georgia</option>
+                <option value="germany">Germany</option>
+                <option value="ghana">Ghana</option>
+                <option value="greece">Greece</option>
+                <option value="guatemala">Guatemala</option>
+                <option value="haiti">Haiti</option>
+                <option value="honduras">Honduras</option>
+                <option value="hungary">Hungary</option>
+                <option value="iceland">Iceland</option>
+                <option value="india">India</option>
+                <option value="indonesia">Indonesia</option>
+                <option value="iran">Iran</option>
+                <option value="iraq">Iraq</option>
+                <option value="ireland">Ireland</option>
+                <option value="israel">Israel</option>
+                <option value="italy">Italy</option>
+                <option value="jamaica">Jamaica</option>
+                <option value="japan">Japan</option>
+                <option value="jordan">Jordan</option>
+                <option value="kazakhstan">Kazakhstan</option>
+                <option value="kenya">Kenya</option>
+                <option value="south-korea">South Korea</option>
+                <option value="kuwait">Kuwait</option>
+                <option value="latvia">Latvia</option>
+                <option value="lebanon">Lebanon</option>
+                <option value="libya">Libya</option>
+                <option value="lithuania">Lithuania</option>
+                <option value="luxembourg">Luxembourg</option>
+                <option value="madagascar">Madagascar</option>
+                <option value="malaysia">Malaysia</option>
+                <option value="maldives">Maldives</option>
+                <option value="mexico">Mexico</option>
+                <option value="moldova">Moldova</option>
+                <option value="morocco">Morocco</option>
+                <option value="myanmar">Myanmar</option>
+                <option value="nepal">Nepal</option>
+                <option value="netherlands">Netherlands</option>
+                <option value="new-zealand">New Zealand</option>
+                <option value="nigeria">Nigeria</option>
+                <option value="norway">Norway</option>
+                <option value="oman">Oman</option>
+                <option value="pakistan">Pakistan</option>
+                <option value="panama">Panama</option>
+                <option value="paraguay">Paraguay</option>
+                <option value="peru">Peru</option>
+                <option value="philippines">Philippines</option>
+                <option value="poland">Poland</option>
+                <option value="portugal">Portugal</option>
+                <option value="qatar">Qatar</option>
+                <option value="romania">Romania</option>
+                <option value="russia">Russia</option>
+                <option value="saudi-arabia">Saudi Arabia</option>
+                <option value="senegal">Senegal</option>
+                <option value="serbia">Serbia</option>
+                <option value="singapore">Singapore</option>
+                <option value="slovakia">Slovakia</option>
+                <option value="slovenia">Slovenia</option>
+                <option value="south-africa">South Africa</option>
+                <option value="spain">Spain</option>
+                <option value="sri-lanka">Sri Lanka</option>
+                <option value="sudan">Sudan</option>
+                <option value="sweden">Sweden</option>
+                <option value="switzerland">Switzerland</option>
+                <option value="syria">Syria</option>
+                <option value="taiwan">Taiwan</option>
+                <option value="tanzania">Tanzania</option>
+                <option value="thailand">Thailand</option>
+                <option value="tunisia">Tunisia</option>
+                <option value="turkey">Turkey</option>
+                <option value="uganda">Uganda</option>
+                <option value="ukraine">Ukraine</option>
+                <option value="united-arab-emirates">United Arab Emirates</option>
+                <option value="united-kingdom">United Kingdom</option>
+                <option value="united-states">United States</option>
+                <option value="uruguay">Uruguay</option>
+                <option value="uzbekistan">Uzbekistan</option>
+                <option value="venezuela">Venezuela</option>
+                <option value="vietnam">Vietnam</option>
+                <option value="yemen">Yemen</option>
+                <option value="zambia">Zambia</option>
+                <option value="zimbabwe">Zimbabwe</option>
+
+            </select>
+
+            <label for="description">Description</label>
+            <textarea id="description" name="description" placeholder="Write about your experience" style="height:200px"></textarea>
+
+            <!-- Existing form fields omitted for brevity -->
+            <label for="image">Image</label>
+            <input type="file" id="image" name="image" multiple>
+
+            <input type="submit" value="Submit" style="margin-left: 53.5%;">
+        </form>
+    </div>
+</body>
+</html>
