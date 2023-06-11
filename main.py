@@ -1,5 +1,4 @@
 import os
-
 from flask import Flask, render_template, request
 from firebase_admin import credentials, initialize_app, firestore
 from google.cloud import storage
@@ -34,21 +33,22 @@ def new_journey():
         print(images)
 
         # Add contact data to database
-        contact_reference = db.collection('journeys').document()
-        contact_reference.set({
+        document = db.collection('journeys').document()
+        document.set({
             'title': title,
             'country': country,
             'description': description
         })
 
-        bucket = storage_client.get_bucket('journeys-storage-2023')
+        bucket = storage_client.bucket(document.id.lower())
+
+        # Create the bucket if it doesn't exist
+        if not bucket.exists():
+            bucket.create()
 
         # Upload images to the bucket
         for image in images:
-            image_extension = os.path.splitext(image.filename)[1]
-            image_filename = f"{contact_reference.id}{image_extension}"
-            blob = bucket.blob(image_filename)
-            print(type(image))
+            blob = bucket.blob(image.filename)
             blob.upload_from_file(image.stream)
 
     return render_template('new_journey.html')
