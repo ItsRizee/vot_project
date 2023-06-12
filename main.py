@@ -1,6 +1,6 @@
 import os
 import base64
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, jsonify
 from firebase_admin import credentials, initialize_app, firestore
 from google.cloud import storage
 
@@ -16,12 +16,17 @@ db = firestore.client(app=default_app)
 # Initialize Cloud Storage client
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'api/storage_key.json'
 storage_client = storage.Client()
+journeys = []
 
 
 @app.route('/')
-def home():
-    # Fetch all journeys from Firestore
-    journeys = []
+def loading_screen():
+    return render_template('loading_screen.html')
+
+
+@app.route('/fetch_data')
+def fetch_data():
+    # Fetch the required data from Firestore
     collection_ref = db.collection('journeys')
     docs = collection_ref.stream()
     for doc in docs:
@@ -41,6 +46,16 @@ def home():
 
         journeys.append(journey_data)
 
+    # Create a dictionary with the fetched data
+    data = {
+        'journeys': journeys  # Include any other data you want to pass
+    }
+
+    return jsonify(True)  # Return the data as a JSON response
+
+
+@app.route('/home')
+def home():
     return render_template('home.html', journeys=journeys)
 
 

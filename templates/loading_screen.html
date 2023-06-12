@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading</title>
+    <link rel="icon" href="../static/favicon.ico" type="image/x-icon">
+    <style>
+        #preloader {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            z-index: 10000;
+            overflow: hidden;
+        }
+
+        .preloader-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #Path_1 {
+            animation: animateOne -0.5s linear 0.8s infinite alternate;
+        }
+
+        @keyframes animateOne {
+            0% {
+                opacity: 0;
+                fill: #ffffff;
+            }
+            100% {
+                opacity: 1;
+                fill: #fdc400;
+            }
+        }
+
+        .loader-text {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 34px;
+            font-family: 'Pacifico', system-ui ;
+            z-index: 10001;
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        <div class="preloader-logo">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="128px" height="128px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g>
+                    <path id="Path_1" style="opacity:0.961" fill="#fdc400" d="M 54.5,12.5 C 62.3835,15.8983 67.2169,21.8983 69,30.5C 72.049,43.9363 72.2157,57.4363 69.5,71C 69.5798,72.8937 69.9131,74.7271 70.5,76.5C 72.6114,77.8485 74.4447,77.5152 76,75.5C 77.05,66.539 77.8833,57.539 78.5,48.5C 84.912,55.536 88.7454,63.8693 90,73.5C 92.9256,87.6476 89.4256,99.8143 79.5,110C 59.1173,120.869 44.9506,115.369 37,93.5C 36.1609,86.4333 36.4942,79.4333 38,72.5C 40.8869,65.0583 44.5536,58.0583 49,51.5C 54.9613,39.0674 56.7947,26.0674 54.5,12.5 Z"></path>
+                </g>
+            </svg>
+        </div>
+    </div>
+    <div class="loader-text">Loading</div>
+
+    <script>
+        // Make an AJAX request to fetch the data
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/fetch_data', true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                if (response === true) {
+                    // Redirect the user to the /home route
+                    window.location.href = '/home';
+                } else {
+                    // Handle any error or unexpected response
+                    console.log('Error: Unexpected response');
+                }
+            }
+        };
+        xhr.send();
+    </script>
+</body>
+</html>
