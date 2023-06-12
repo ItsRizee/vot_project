@@ -1,1 +1,0 @@
-# vot_project
